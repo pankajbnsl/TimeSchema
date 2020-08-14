@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">    
+    <title><%=title%></title>
+    <link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
+    <div>
+      <!-- the heading part -->
+        <h1><span class="styling">TIME</span> SCHEME</h1>
+      <!-- first horizontal line -->
+        <div id="hor-line1"></div>
+      <!-- form to create the task -->
+        <form action="/create-task" method="POST">
+          <!-- the description section -->
+            <div id="description-area">
+                <label for="description-box">Description</label>
+                <textarea name="task" id="description-box" cols="20" rows="5" placeholder="What do you need to do?" required></textarea>
+            </div>
+          <!-- Start of Category and date section -->
+            <div id="store">
+          <!-- the catgory section -->
+            <div id="category-date">
+                <div id="category">
+                    <label for="options">category</label>
+                    <select name="categories" id="options" required>
+                        <option value="public">Public</option>
+                        <option value="personal">Personal</option>
+                        <option value="work">Work</option>
+                        <option value="school">School</option>
+                        <option value="home">Home</option>
+                    </select>
+                </div>
+            </div>
+            <!-- End of Category Section -->
+
+           <!-- the date section -->
+            <div id="category-date">
+                <div id="category">
+                    <label for="date">Date</label>
+                    <input type="date" name="date" id="cald" required>
+                </div>
+            </div>
+            <!-- End of Date Section -->
+            </div>
+            <!-- End of Category and date section -->
+
+          <!-- the buttons to add the task -->
+            <div id="add-button">
+               <button type="submit"><i class="fas fa-plus-square"></i>Add the Task</button>
+            </div>
+          <!-- End of Add Button -->
+        </form>
+        <!-- End of create to task form -->
+
+        <!-- the buttons to Delete all task -->
+        <form action="/delete_all_tasks" method="POST">
+            <button class="button1" type="submit" value="Submit"><i class="fas fa-trash"></i>Delete All</button>
+        </form>
+        <!-- End of Delete all task button -->
+        
+        <!-- Second Horizontal line -->
+        <div id="hor-line2"></div>
+    </div>
+   
+    <!-- the new added task section -->
+    <div id="all-tasks">
+    <!-- <form action="/delete-task" method="POST">        -->
+      <!-- the task list heading -->
+        <div id="task-heading">
+            <h1 id="heading1">TASKS LIST</h1>
+        </div>
+       <!-- Start of Task list Boxes -->
+        <div id="task-container">
+            <%for (var i of todo){%>    
+                <div id="task-boxes">  
+                    <!-- Start of print description and date part -->
+                    <div id="task-separate">      
+                    <p id="task-description"><%=i.task%></p>
+                    <p id="task-date"><i class="far fa-calendar-alt clndr"></i> <%=i.date%></p>
+                    </div>
+                     <!-- End of print description and date part -->
+
+                    <!-- Start of Edit and Remove Button -->
+                    <div class="items">
+                        <a href="/capture_id/?id=<%= i._id%>" onclick="visbleForm()" class="edit-button">Edit</a>
+                        <!-- <button class="edit-button" onclick="visbleForm()">Edit</button> -->
+                        <button class="remove-button"><a href="/remove-contact/?id=<%= i._id %>">Remove</a></button>
+                    </div>
+                    <!-- End of Edit and remove button -->
+
+                    <!-- Start of print Category part -->
+                    <div class ="task-ctgry" id="<%=i.category%>">
+                        <p id="show"><%=i.category%></p>
+                    </div> 
+                    <!-- End of print Category part -->
+                </div>    
+            <%}%>
+        </div>    
+       <!-- End of Task list boxes -->
+    <!-- </form> -->
+    <div id="update-form">
+      <button type="button" id="cross" onclick="closeWin()"><i class="fa fa-times" aria-hidden="true"></i></button>
+          <form action="/edit-task" method="POST">
+              <div id="description-edit">
+                  <label for="description-edit-box">Description</label>
+                  <textarea name="descedit" id="descedit-area" cols="30" rows="10"  placeholder="What do you need to do?" required></textarea>
+              </div>
+              
+                <div id="set">
+                <div id="category-date-edit">
+                <div id="category-edit">
+                  <label for="options" id="cat-label">category</label>
+                  <select name="categories" id="options-edit" required>
+                      <option value="public">Public</option>
+                      <option value="personal">Personal</option>
+                      <option value="work">Work</option>
+                      <option value="school">School</option>
+                      <option value="home">Home</option>
+                  </select>
+                </div>
+                </div>
+                <div id="category-date-edit">
+                  <div id="category-edit">
+                      <label for="date">Date</label>
+                      <input type="date" name="dateedit" id="cald" required>
+                  </div>
+                </div>
+                </div>
+              
+              <div id="edit-button">
+                <button type="submit"><i class="fas fa-plus-square"></i> Edit Task</button>
+             </div>
+          </form>
+    </div>
+    </div>
+    <!-- End of New added task section -->
+    <script type="text/javascript" src="/javascript/home.js"></script>
+</body>
+</html>

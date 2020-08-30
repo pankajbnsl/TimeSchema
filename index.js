@@ -32,31 +32,7 @@ app.use(express.urlencoded());
 // using for set the month
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let idcap;
-var todoList = [
-    {
-        task : 'Bring Vegitables',
-        date : 'july 5,2020',
-        cat : 'personal'
-    },
-    {
-        task : 'Bring Vegitables',
-        date : 'july 5,2020',
-        cat : 'work'
 
-    },
-    {
-        task : 'Bring Vegitables',
-        date : 'july 5,2020',
-        cat : 'school'
-
-    },
-    {
-        task : 'Bring Vegitables',
-        date : 'july 5,2020',
-        cat : 'personal'
-
-    }
-];
 
 //to render home.ejs
 app.get('/', function(req, res){
